@@ -1,0 +1,21 @@
+section {
+  border: black solid 1px;
+  padding: 0.25rem;
+}
+
+section > h1 {
+  font-size: 1rem;
+}
+
+label {
+  display: block;
+  padding: 0.5rem 0;
+}
+
+input {
+  display: inline-block;
+}
+
+div[data-error] {
+  background-color: rgb(255, 240, 0);
+}
