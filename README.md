@@ -1,3 +1,15 @@
+# What is This?
+This repo tests and explores the CDX and CROMERR APIs as furnished by the EPA.
+
+It's a Meteor application.
+
+# Run it Locally
+1. [Install Meteor](http://docs.meteor.com/#/full/quickstart)
+2. Clone this repo
+3. cd ./e-manifest-cromerr-client
+4. meteor
+5. Point your browser to http://localhost:3000/
+
 # 18F Open Source Policy
 
 This repository contains the official [Open Source Policy](policy.md) of [18F](https://18f.gsa.gov/) (a digital delivery team within the [General Services Administration](http://gsa.gov)).
