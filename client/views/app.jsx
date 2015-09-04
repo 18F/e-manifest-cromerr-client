@@ -16,7 +16,8 @@ App = React.createClass({
     
     return (
       <div>
-      <Authenticate/>
+        <Authenticate/>
+        <AuthorizeAuthenticate/>
       { everythingElse() }
       </div>
     );
