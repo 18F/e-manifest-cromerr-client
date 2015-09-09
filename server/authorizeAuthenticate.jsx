@@ -21,7 +21,6 @@ Meteor.methods({
                         .parent()
                         .parent();
     var authenticateXmlRequest = requestDoc.toString();
-    console.log("going to send xml: " +authenticateXmlRequest);
     try {
 
       var result = HTTP.post("https://devngn.epacdxnode.net/cdx-register/services/RegisterService", {
