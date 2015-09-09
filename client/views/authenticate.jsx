@@ -61,7 +61,11 @@ Authenticate = React.createClass({
     return (
       <section>
         <h1>Authenticate</h1>
-        Authenticated with user: {this.data.authUser.firstName} {this.data.authUser.lastName}
+        Authenticated with user:
+        <div>user id: {this.data.authUser.userId}</div>
+        <div>first name: {this.data.authUser.firstName}</div>
+        <div>middle initial: {this.data.authUser.middleInitial ? this.data.authUser.middleInitial : "n/a"}</div>
+        <div>last name: {this.data.authUser.lastName}</div>
         <button onClick={clearUser}>authenticate different user</button>
       </section>
     );

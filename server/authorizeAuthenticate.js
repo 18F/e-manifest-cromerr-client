@@ -1,30 +1,17 @@
 Meteor.methods({
   authorizeAuthenticate: function(userId, password) {
-    var requestDoc = XML.Document()
-                        .node("soap12:Envelope")
-                        .attr({
-                          "xmlns:cdx": "http://www.exchangenetwork.net/wsdl/register/1",
-                          "xmlns:xsi": "http://www.w3.org/2001/XMLSchema-instance",
-                          "xmlns:xsd": "http://www.w3.org/2001/XMLSchema",
-                          "xmlns:soap12": "http://www.w3.org/2003/05/soap-envelope"
-                        })
-                        .node("soap12:Body")
-                        .node("cdx:Authenticate")
-                        .node("userId", userId)
-                        .parent()
-                        .node("credential", password)
-                        .parent()
-                        .node("domain", "default")
-                        .parent()
-                        .node("authenticationMethod", "password")
-                        .parent()
-                        .parent()
-                        .parent();
-    var authenticateXmlRequest = requestDoc.toString();
+    var requestTemplateText = Assets.getText("authorizeAuthenticateRequest.xml");
+    var requestTemplate = _.template(requestTemplateText);
+
+    var requestXml = requestTemplate({
+      userId: userId,
+      password: password
+    });
+
     try {
 
       var result = HTTP.post("https://devngn.epacdxnode.net/cdx-register/services/RegisterService", {
-        content: authenticateXmlRequest
+        content: requestXml
       });
 
       console.log("success: " + result.content);
