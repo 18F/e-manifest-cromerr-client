@@ -1,0 +1,32 @@
+<soap12:Envelope
+    xmlns:cdx="http://www.exchangenetwork.net/wsdl/register/sign/1"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns:soap12="http://www.w3.org/2003/05/soap-envelope">
+  <soap12:Body>
+    <cdx:CreateActivityWithProperties>
+      <securityToken><%= securityToken %></securityToken>
+      <signatureUser>
+        <UserId><%= userId %></UserId>
+        <FirstName><%= firstName %></FirstName>
+        <LastName><%= lastName %></LastName>
+        <MiddleInitial><%= middleInitial %></MiddleInitial>
+      </signatureUser>
+      <dataflowName><%= dataflowName %></dataflowName>
+      <properties>
+        <Property>
+          <Key>activityDescription</Key>
+          <Value><%= activityDescription %></Value>
+        </Property>
+        <Property>
+          <Key>roleName</Key>
+          <Value><%= roleName %></Value>
+        </Property>
+        <Property>
+          <Key>roleCode</Key>
+          <Value><%= roleCode %></Value>
+        </Property>
+      </properties>
+    </cdx:CreateActivityWithProperties>
+  </soap12:Body>
+</soap12:Envelope>

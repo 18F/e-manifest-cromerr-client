@@ -3,7 +3,9 @@ App = React.createClass({
   getMeteorData: function() {
     return {
       authUser: Session.get("authUser"),
-      securityToken: Session.get("securityToken")
+      securityToken: Session.get("securityToken"),
+      roles: Session.get("roles"),
+      dataflowName: Session.get("dataflowName")
     };
   },
   render: function() {
@@ -22,7 +24,7 @@ App = React.createClass({
     };
     
     var emitCreateActivity = function() {
-      if (that.data.dataflowRoles) {
+      if (that.data.roles && that.data.dataflowName) {
         return <CreateActivityWithProperties/>;
       }
     };

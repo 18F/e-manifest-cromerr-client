@@ -44,6 +44,7 @@ RetrieveRoleTypes = React.createClass({
           that.setState({ disabled: false });
         } else {
           Session.set("roles", result.roles);
+          Session.set("dataflowName", dataflowName);
           Session.set("retrieveRoleTypesError", undefined);
         }
       });
