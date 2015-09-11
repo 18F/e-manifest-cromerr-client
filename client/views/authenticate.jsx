@@ -49,7 +49,7 @@ Authenticate = React.createClass({
     if (!this.data.authUser) {
       return (
         <section>
-          <h1>Authenticate</h1>
+          <h1>Authenticate (the end user)</h1>
           { showAuthError() }
           <label htmlFor="userId">userId <input id="userId" name="userId" disabled={disabled} ref="userId"/></label>
           <label htmlFor="password">password <input id="password" name="password" disabled={disabled} ref="password"/></label>
@@ -60,7 +60,7 @@ Authenticate = React.createClass({
 
     return (
       <section>
-        <h1>Authenticate</h1>
+        <h1>Authenticate (the end user)</h1>
         Authenticated with user:
         <div>user id: {this.data.authUser.userId}</div>
         <div>first name: {this.data.authUser.firstName}</div>

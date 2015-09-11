@@ -11,13 +11,13 @@ App = React.createClass({
 
     var emitAuthorizeAuthenticate = function() {
       if (that.data.authUser) {
-        return <AuthorizeAuthenticate />;
+        return <AuthorizeAuthenticate/>;
       }
     };
 
     var emitRetrieveRoles = function() {
       if (that.data.securityToken) {
-        console.log("Next, pick up the dataflow roles for the user (not implemented)");
+        return <RetrieveRoleTypes/>;
       }
     };
     
