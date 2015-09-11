@@ -63,13 +63,14 @@ RetrieveRoleTypes = React.createClass({
           { showError() }
           <label htmlFor="dataflowName">Dataflow name <input id="dataflowName" name="dataflowName" disabled={disabled} ref="dataflowName" defaultValue="DEMO2: EPA Demonstration 2"/></label>
           <button type="submit" onClick={retrieveRoles} disabled={disabled}>retrieve roles</button>
+          <UseDefaultRoles/>
         </section>
       );
     }
 
     var listRoles = function() {
-      return _.map(this.data.roles, function(role) {
-        return <li>role</li>
+      return _.map(that.data.roles, function(role) {
+        return <li key={role.roleId}>{role.roleId} : {role.roleName}</li>
       });
     };
     
