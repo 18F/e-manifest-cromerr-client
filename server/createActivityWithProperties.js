@@ -12,21 +12,18 @@ Meteor.methods({
       });
 
       console.log("success: " + result.content);
-      var xmlResponseContent = XML.parseXml(result.content);
+      var unwrappedContent = getSingleMultipartContent(result.content);
+      var xmlResponseContent = XML.parseXml(unwrappedContent);
       console.log("parsed xml: " + xmlResponseContent);
       var resultJson = getResponseAsJson(xmlResponseContent);
       return resultJson;
     } catch (error) {
       console.log(error);
-      // THIS service does not send back valid XML in the response body. Right now.
-      console.log(error.response.content);
-      /*
-      var xmlResponseContent = XML.parseXml(error.response.content);
+      var unwrappedContent = getSingleMultipartContent(error.response.content);
+      var xmlResponseContent = XML.parseXml(unwrappedContent);
       console.log("soap error: " + xmlResponseContent);
       var resultJson = getErrorAsJson(xmlResponseContent);
       throw new Meteor.Error(resultJson);
-      */
-      throw new Meteor.Error({description: error.response.content});
     }
   }
 });

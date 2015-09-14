@@ -7,20 +7,24 @@ Meteor.methods({
       userId: userId,
       password: password
     });
-
+    
+    // service sends back a multipart mime response
     try {
 
-      var result = HTTP.post("https://devngn.epacdxnode.net/cdx-register/services/RegisterService", {
+      var result = HTTP.post("https://devngn.epacdxnode.net/cdx-register/services/RegisterSignService", {
         content: requestXml
       });
 
       console.log("success: " + result.content);
-      var xmlResponseContent = XML.parseXml(result.content);
+      var unwrappedContent = getSingleMultipartContent(result.content);
+      var xmlResponseContent = XML.parseXml(unwrappedContent);
       console.log("parsed xml: " + xmlResponseContent);
       var resultJson = getAuthorizeAuthenticateJson(xmlResponseContent);
       return resultJson;
     } catch (error) {
-      var xmlResponseContent = XML.parseXml(error.response.content);
+      console.log(error.response.content);
+      var unwrappedContent = getSingleMultipartContent(result.content);
+      var xmlResponseContent = XML.parseXml(unwrappedContent);
       console.log("soap error: " + xmlResponseContent);
       var resultJson = getAuthenticateErrorJson(xmlResponseContent);
       throw new Meteor.Error(resultJson);
