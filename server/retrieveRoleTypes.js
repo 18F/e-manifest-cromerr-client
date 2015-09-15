@@ -18,7 +18,6 @@ Meteor.methods({
       return resultJson;
     } catch (error) {
       console.log(error);
-      debugger;
 
       var xmlResponseContent = XML.parseXml(error.response.content);
       console.log("soap error: " + xmlResponseContent);
