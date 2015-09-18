@@ -1,0 +1,14 @@
+<soap12:Envelope
+    xmlns:cdx="http://www.exchangenetwork.net/wsdl/register/sign/1"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns:soap12="http://www.w3.org/2003/05/soap-envelope">
+  <soap12:Body>
+    <cdx:AuthenticateUser>
+      <securityToken><%= securityToken %></securityToken>
+      <activityId><%= activityId %></activityId>
+      <userId><%= userId %></userId>
+      <password><%= password %></password>
+    </cdx:AuthenticateUser>
+  </soap12:Body>
+</soap12:Envelope>
