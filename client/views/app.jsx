@@ -33,6 +33,7 @@ App = React.createClass({
       <div>
         <Authenticate/>
         { emitAuthorizeAuthenticate() }
+        { emitRetrieveRoles() }
         { emitCreateActivity() }
       </div>
     );

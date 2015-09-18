@@ -4,6 +4,7 @@ CreateActivityWithProperties = React.createClass({
     return {
       securityToken: Session.get("securityToken"),
       authUser: Session.get("authUser"),
+      roles: Session.get("roles"),
       activityId: Session.get("activityId"),
       createActivityError: Session.get("createActivityError")
     };
@@ -35,6 +36,8 @@ CreateActivityWithProperties = React.createClass({
       var activityDescription = activityDescriptionNode.value;
       var selectedRoleRef = that.refs["roles"];
       var selectedRoleNode = React.findDOMNode(selectedRoleRef);
+      var dataflowNameRef = that.refs["dataflowName"];
+      var dataflowName = React.findDOMNode(dataflowNameRef).value;
       var roleCode = selectedRoleNode.value;
       var role = _.findWhere(that.data.roles, {roleId: roleCode});
       var roleName = role.roleName;
@@ -46,7 +49,7 @@ CreateActivityWithProperties = React.createClass({
         lastName: that.data.authUser.lastName,
         middleInitial: that.data.authUser.middleInitial,
         activityDescription: activityDescription,
-        dataflowName: that.data.dataflowName,
+        dataflowName: dataflowName,
         roleCode: roleCode,
         roleName: roleName
       };
@@ -82,10 +85,14 @@ CreateActivityWithProperties = React.createClass({
         { showError() }
         <label htmlFor="activityDescription">activity description
           <input id="activityDescription" name="activityDescription" disabled={disabled}
-                 ref="activityDescription"/></label>
-          <label htmlFor="dataflowName">Dataflow name <input id="dataflowName" name="dataflowName"
-                                                             disabled={disabled} ref="dataflowName"
-                                                             defaultValue="eManifest"/></label>
+                 ref="activityDescription"/>
+        </label>
+        <label htmlFor="dataflowName">Dataflow name <input id="dataflowName" name="dataflowName"
+                                                           disabled={disabled} ref="dataflowName"
+                                                           defaultValue="eManifest"/></label>
+        <select name="role" ref="roles">
+          {emitRoles()}
+        </select>
         <button type="submit" onClick={createActivity} disabled={disabled}>create activity</button>
         </section>
       );
