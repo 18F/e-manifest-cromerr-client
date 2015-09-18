@@ -64,7 +64,7 @@ AuthorizeAuthenticate = React.createClass({
       <h1>Authorize/Authenticate</h1>
       <p>Authenticated</p>
       <label htmlFor="securityToken">token: <span id="tokan">{this.data.securityToken}</span></label>
-      <button onClick={clearUser}>authenticate different user</button>
+      <button onClick={clearUser}>get new token</button>
       </section>
     );
 
