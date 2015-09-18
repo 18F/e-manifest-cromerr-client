@@ -20,6 +20,10 @@ Meteor.methods({
       var resultJson = getAuthenticateJson(xmlResponseContent);
       return resultJson;
     } catch (error) {
+      if (! error.response) {
+        console.log("error: " + error.code);
+        throw new Meteor.Error(error.code);
+      }
       var xmlResponseContent = XML.parseXml(error.response.content);
       console.log("soap error: " + xmlResponseContent);
       var resultJson = getAuthenticateErrorJson(xmlResponseContent);
