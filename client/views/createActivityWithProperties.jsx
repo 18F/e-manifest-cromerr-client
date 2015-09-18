@@ -4,8 +4,6 @@ CreateActivityWithProperties = React.createClass({
     return {
       securityToken: Session.get("securityToken"),
       authUser: Session.get("authUser"),
-      dataflowName: Session.get("dataflowName"),
-      roles: Session.get("roles"),
       activityId: Session.get("activityId"),
       createActivityError: Session.get("createActivityError")
     };
@@ -85,9 +83,9 @@ CreateActivityWithProperties = React.createClass({
         <label htmlFor="activityDescription">activity description
           <input id="activityDescription" name="activityDescription" disabled={disabled}
                  ref="activityDescription"/></label>
-          <select ref="roles">
-            { emitRoles() }
-          </select>
+          <label htmlFor="dataflowName">Dataflow name <input id="dataflowName" name="dataflowName"
+                                                             disabled={disabled} ref="dataflowName"
+                                                             defaultValue="eManifest"/></label>
         <button type="submit" onClick={createActivity} disabled={disabled}>create activity</button>
         </section>
       );

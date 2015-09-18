@@ -24,7 +24,7 @@ App = React.createClass({
     };
     
     var emitCreateActivity = function() {
-      if (that.data.roles && that.data.dataflowName) {
+      if (that.data.securityToken) {
         return <CreateActivityWithProperties/>;
       }
     };
@@ -33,7 +33,6 @@ App = React.createClass({
       <div>
         <Authenticate/>
         { emitAuthorizeAuthenticate() }
-        { emitRetrieveRoles() }
         { emitCreateActivity() }
       </div>
     );

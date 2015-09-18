@@ -1,30 +1,11 @@
 Meteor.methods({
   createActivityWithProperties: function(props) {
-    var requestTemplateText = Assets.getText("createActivityWithPropertiesRequest.xml");
-    var requestTemplate = _.template(requestTemplateText);
-
-    var requestXml = requestTemplate(props);
-
-    try {
-
-      var result = HTTP.post("https://devngn.epacdxnode.net/cdx-register/services/RegisterSignService", {
-        content: requestXml
-      });
-
-      console.log("success: " + result.content);
-      var unwrappedContent = getSingleMultipartContent(result.content);
-      var xmlResponseContent = XML.parseXml(unwrappedContent);
-      console.log("parsed xml: " + xmlResponseContent);
-      var resultJson = getResponseAsJson(xmlResponseContent);
-      return resultJson;
-    } catch (error) {
-      console.log(error);
-      var unwrappedContent = getSingleMultipartContent(error.response.content);
-      var xmlResponseContent = XML.parseXml(unwrappedContent);
-      console.log("soap error: " + xmlResponseContent);
-      var resultJson = getErrorAsJson(xmlResponseContent);
-      throw new Meteor.Error(resultJson);
-    }
+    return registerSignService({
+      props: props,
+      templateName: "createActivityWithProperties",
+      success: getResponseAsJson,
+      error: getErrorAsJson
+    });
   }
 });
 
