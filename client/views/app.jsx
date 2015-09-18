@@ -5,7 +5,8 @@ App = React.createClass({
       authUser: Session.get("authUser"),
       securityToken: Session.get("securityToken"),
       roles: Session.get("roles"),
-      dataflowName: Session.get("dataflowName")
+      dataflowName: Session.get("dataflowName"),
+      activityId: Session.get("activityId")
     };
   },
   render: function() {
@@ -29,12 +30,19 @@ App = React.createClass({
       }
     };
     
+    var emitGetQuestion = function() {
+      if (that.data.activityId) {
+        return <GetQuestion/>;
+      }
+    };
+    
     return (
       <div>
         <Authenticate/>
         { emitAuthorizeAuthenticate() }
         { emitRetrieveRoles() }
         { emitCreateActivity() }
+        { emitGetQuestion() }
       </div>
     );
   }

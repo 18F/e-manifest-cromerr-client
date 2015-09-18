@@ -34,12 +34,12 @@ registerSignService = function(options) {
       throw new Meteor.Error(resultJson);
     }
 
-    var resultJson = handleRegisterSignError(error);
+    var resultJson = handleRegisterSignError(xmlResponseContent);
     throw new Meteor.Error(resultJson);
   }
 };
 
-var handleRegisterSignError = function(error) {
+var handleRegisterSignError = function(xml) {
   var fault = xml.get("/soap:Envelope/soap:Body/soap:Fault/soap:Detail/ns1:RegisterFault", {
     "soap": "http://www.w3.org/2003/05/soap-envelope",
     "ns1": "http://www.exchangenetwork.net/wsdl/register/sign/1",

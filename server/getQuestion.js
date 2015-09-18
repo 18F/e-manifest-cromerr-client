@@ -8,26 +8,22 @@ Meteor.methods({
   }
 });
 
-var getAuthorizeAuthenticateJson = function(xml) {
-  var questions = xml.get("/soap:Envelope/soap:Body/ns2:GetQuestionResponse/question", {
+var getQuestionJson = function(xml) {
+  var questionId = xml.get("/soap:Envelope/soap:Body/ns2:GetQuestionResponse/question/questionId", {
     "soap": "http://www.w3.org/2003/05/soap-envelope",
     "ns2": "http://www.exchangenetwork.net/wsdl/register/sign/1"
-  });
+  }).text();
   
-  var questions = [];
+  var questionText = xml.get("/soap:Envelope/soap:Body/ns2:GetQuestionResponse/question/text", {
+    "soap": "http://www.w3.org/2003/05/soap-envelope",
+    "ns2": "http://www.exchangenetwork.net/wsdl/register/sign/1"
+  }).text();
 
-  _.each(questions, function(question) {
-    var questionId = question.get("./questionId").text;
-    var questionText = question.get("./text").text();
-
-    questions.push({
-      questionId: questionId,
-      questionText: questionText
-    });
-    
-    console.log("question: " + questionText);
-  });
-  
-  return { questions: questions };
-}
+  console.log("questionId/text: " + questionId + "/" + questionText);
+  // seems to return one for now
+  return { questions: [ {
+    questionId: questionId,
+    questionText: questionText
+  }]};
+};
 
