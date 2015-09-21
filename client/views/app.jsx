@@ -8,7 +8,8 @@ App = React.createClass({
       dataflowName: Session.get("dataflowName"),
       activityId: Session.get("activityId"),
       questions: Session.get("questions"),
-      validAnswer: Session.get("validAnswer")
+      validAnswer: Session.get("validAnswer"),
+      documentId: Session.get("documentId")
     };
   },
   render: function() {
@@ -46,7 +47,13 @@ App = React.createClass({
 
     var emitSign = function() {
       if (that.data.validAnswer) {
-        return <Sign/>
+        return <Sign/>;
+      }
+    };
+    
+    var emitDownloadByDocumentId = function() {
+      if (that.data.documentId) {
+        return <DownloadByDocumentId/>;
       }
     };
     
@@ -59,6 +66,7 @@ App = React.createClass({
         { emitGetQuestion() }
         { emitValidateAnswer() }
         { emitSign() }
+        { emitDownloadByDocumentId() }
       </div>
     );
   }
