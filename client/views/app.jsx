@@ -7,7 +7,8 @@ App = React.createClass({
       roles: Session.get("roles"),
       dataflowName: Session.get("dataflowName"),
       activityId: Session.get("activityId"),
-      questions: Session.get("questions")
+      questions: Session.get("questions"),
+      validAnswer: Session.get("validAnswer")
     };
   },
   render: function() {
@@ -42,6 +43,12 @@ App = React.createClass({
         return <ValidateAnswer/>;
       }
     };
+
+    var emitSign = function() {
+      if (that.data.validAnswer) {
+        return <Sign/>
+      }
+    };
     
     return (
       <div>
@@ -51,6 +58,7 @@ App = React.createClass({
         { emitCreateActivity() }
         { emitGetQuestion() }
         { emitValidateAnswer() }
+        { emitSign() }
       </div>
     );
   }

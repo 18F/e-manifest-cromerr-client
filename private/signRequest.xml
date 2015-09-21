@@ -8,7 +8,7 @@
       <securityToken><%= securityToken %></securityToken>
       <activityId><%= activityId %></activityId>
       <signatureDocument>
-        <Name></Name>
+        <Name><%= documentName %></Name>
         <Format>BIN</Format>
         <Content><%= content %></Content>
       </signatureDocument>
