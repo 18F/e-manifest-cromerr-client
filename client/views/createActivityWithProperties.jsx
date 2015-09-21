@@ -30,7 +30,6 @@ CreateActivityWithProperties = React.createClass({
     };
 
     var postToCDX = function() {
-      // FIXME: this isn't right...
       var activityDescriptionRef = that.refs["activityDescription"];
       var activityDescriptionNode = React.findDOMNode(activityDescriptionRef);
       var activityDescription = activityDescriptionNode.value;

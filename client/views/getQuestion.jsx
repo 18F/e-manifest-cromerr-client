@@ -49,7 +49,7 @@ GetQuestion = React.createClass({
 
     var emitQuestions = function() {
       return _.map(that.data.questions, function(question) {
-        return <li>{question.questionId}: {question.questionText}</li>
+        return <li key={question.questionId}>{question.questionId}: {question.questionText}</li>
       });
     };
 

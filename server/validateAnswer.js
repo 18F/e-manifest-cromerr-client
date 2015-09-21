@@ -9,13 +9,11 @@ Meteor.methods({
 });
 
 var getValidateAnswerJson = function(xml) {
-  var validAnswer = xml.get("/soap:Envelope/soap:Body/ns2:ValidateAnswerResponse/validAnswer", {
+  var isValidAnswer = xml.get("/soap:Envelope/soap:Body/ns2:ValidateAnswerResponse/validAnswer", {
     "soap": "http://www.w3.org/2003/05/soap-envelope",
     "ns2": "http://www.exchangenetwork.net/wsdl/register/sign/1"
   }).text();
 
-  var isValidAnswer = (validAnswer.lowercase() === "true");
-  
   console.log("is valid answer: " + isValidAnswer);
   
   return { isValidAnswer: isValidAnswer };

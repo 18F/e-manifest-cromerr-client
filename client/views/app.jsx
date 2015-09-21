@@ -6,7 +6,8 @@ App = React.createClass({
       securityToken: Session.get("securityToken"),
       roles: Session.get("roles"),
       dataflowName: Session.get("dataflowName"),
-      activityId: Session.get("activityId")
+      activityId: Session.get("activityId"),
+      questions: Session.get("questions")
     };
   },
   render: function() {
@@ -35,6 +36,12 @@ App = React.createClass({
         return <GetQuestion/>;
       }
     };
+
+    var emitValidateAnswer = function() {
+      if (that.data.securityToken && that.data.activityId && that.data.questions) {
+        return <ValidateAnswer/>;
+      }
+    };
     
     return (
       <div>
@@ -43,6 +50,7 @@ App = React.createClass({
         { emitRetrieveRoles() }
         { emitCreateActivity() }
         { emitGetQuestion() }
+        { emitValidateAnswer() }
       </div>
     );
   }
