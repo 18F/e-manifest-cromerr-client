@@ -60,9 +60,10 @@ RetrieveRoleTypes = React.createClass({
       return (
         <section>
           <h1>Retrieve Role Types</h1>
-          <p>Finds the roles available for a user, needed to create a CROMERR activity. Uses data previously retrieved from other requests plus a dataflow name.</p>
+          <p>Finds the roles available for a user, roles needed to create a CROMERR activity. Uses data
+            previously retrieved from other requests plus a dataflow name. Not verified in dev environment.</p>
           { showError() }
-          <label htmlFor="dataflowName">Dataflow name <input id="dataflowName" name="dataflowName" disabled={disabled} ref="dataflowName" defaultValue="DEMO2: EPA Demonstration 2"/></label>
+          <label htmlFor="dataflowName">Dataflow name <input id="dataflowName" name="dataflowName" disabled={disabled} ref="dataflowName" defaultValue="eManifest"/></label>
           <button type="submit" onClick={retrieveRoles} disabled={disabled}>retrieve roles</button>
           <UseDefaultRoles/>
         </section>

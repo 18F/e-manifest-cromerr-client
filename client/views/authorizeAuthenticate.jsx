@@ -49,8 +49,8 @@ AuthorizeAuthenticate = React.createClass({
     if (!this.data.securityToken) {
       return (
         <section>
-        <h1>Authorize/Authenticate</h1>
-        <p>Gets the authentication token</p>
+        <h1>Authorize/Authenticate (system user)</h1>
+        <p>Gets the authentication token for the system user</p>
         { showAuthError() }
         <label htmlFor="userId">userId <input id="userId" name="userId" disabled={disabled} ref="userId"/></label>
         <label htmlFor="password">password <input id="password" name="password" disabled={disabled} ref="password"/></label>
@@ -61,7 +61,7 @@ AuthorizeAuthenticate = React.createClass({
 
     return (
       <section>
-      <h1>Authorize/Authenticate</h1>
+      <h1>Authorize/Authenticate (system user)</h1>
       <p>Authenticated</p>
       <label htmlFor="securityToken">token: <span id="tokan">{this.data.securityToken}</span></label>
       <button onClick={clearUser}>get new token</button>

@@ -28,11 +28,18 @@ Meteor.methods({
 });
 
 var parseResponseToJson = function(xml) {
-  var roles = xml.get("/soap:Envelope/soap:Body/ns2:RetrieveRolesForDataflowResponse/Role", {
+  var roleNodes = xml.find("/soap:Envelope/soap:Body/ns2:RetrieveRoleTypesResponse/RoleType", {
     "soap": "http://www.w3.org/2003/05/soap-envelope",
     "ns2": "http://www.exchangenetwork.net/wsdl/register/1"
   });
-  console.log("roles: " + roles);
+  var roles = [];
+
+  _.each(roleNodes, function(roleNode) {
+    var roleId = roleNode.get("./code").text();
+    var roleName = roleNode.get("./description").text();
+    roles.push({ roleId: roleId, roleName: roleName });
+  });
+  
   return { roles: roles };
 }
 
